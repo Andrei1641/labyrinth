@@ -1,9 +1,7 @@
 import pygame
 from collections import deque
 
-from PIL.ImtImagePlugin import field
 from pygame import KEYDOWN
-from pygame.threads import FINISH
 
 WIDTH, HEIGHT = 500, 500
 BORDER_WIDTH = 5
