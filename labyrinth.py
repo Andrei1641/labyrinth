@@ -1,9 +1,6 @@
 import pygame
 from collections import deque
-
-from PIL.ImtImagePlugin import field
 from pygame import KEYDOWN
-from pygame.threads import FINISH
 
 WIDTH, HEIGHT = 500, 500
 BORDER_WIDTH = 5
@@ -69,7 +66,10 @@ def bfs_path_matrix(grid, start, end):
             return reconstruct_path(parent, end)
         for dr, dc in directions:
             nr, nc = r + dr, c + dc
-            if 0 <= nr < rows and 0 <= nc < cols and (grid[nr][nc] == 0 or grid[nr][nc] == "S" or grid[nr][nc] == "F" )and (nr, nc) not in visited:
+            if (0 <= nr < rows and 0 <= nc < cols
+                and (grid[nr][nc] == 0 or grid[nr][nc] == "S"
+                or grid[nr][nc] == "F" )and (nr, nc) not in visited):
+
                 visited.add((nr, nc))
                 parent[(nr, nc)] = (r,c)
                 queue.append((nr, nc))
@@ -108,9 +108,9 @@ def autom_move_player(path_index, path, move_timer, player):
 
 def main():
     grid = [
-      ["S", 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 1],
-        [1, 1, 0, 1, 1, 1],
+      ["S", 1, 1, 1, 1, 1],
+        [0, 0, 0, 0, 0, 0],
+        [1, 1, 0, 1, 1, 0],
         [0, 0, 0, 1, 1, "F"],
         [0, 1, 0, 0, 0, 0],
         [1, 1, 1, 0, 1, 1]
@@ -128,6 +128,7 @@ def main():
     pygame.display.set_caption("Labyrinth")
     clock = pygame.time.Clock()
     all_sprites = pygame.sprite.Group()
+
     fields_ini(grid, fields_arr, untouchable_fs)
     all_sprites.add(fields_arr)
     all_sprites.add(untouchable_fs)
