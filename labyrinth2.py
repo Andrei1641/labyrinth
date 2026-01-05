@@ -3,7 +3,7 @@ from collections import deque
 from pygame import KEYDOWN
 import  random
 
-WIDTH, HEIGHT = 500, 500
+WIDTH, HEIGHT = 1000, 700
 WALLS_WIDTH = 5
 FPS = 30
 
@@ -13,7 +13,7 @@ PLAYER_COLOR = (255, 255, 0)
 WALLS_COLOR = (220, 0, 0)
 START_COLOR = (0, 255, 0)
 FINISH_COLOR = (0, 0, 255)
-SIZE = 50
+SIZE = 40
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
@@ -222,9 +222,8 @@ def autom_move_player(path_index, path, move_timer, player):
     return path_index, move_timer
 
 def main():
-    grid = [[]]
     fields_arr = []
-    number_of_sells = 7
+    number_of_sells = 15
     move_timer = 0
     path_index = 0
     path = []
@@ -257,7 +256,7 @@ def main():
                 movement(event, player, a, b, c, d)
                 if event.key == pygame.K_h:
                     path_index = 0
-                    path = bfs_path_matrix(grid, player.coordinates, (6,0))
+                    path = bfs_path_matrix(grid, player.coordinates, (number_of_sells - 1,0))
                     move_timer = pygame.time.get_ticks()
                     print(path)
 
